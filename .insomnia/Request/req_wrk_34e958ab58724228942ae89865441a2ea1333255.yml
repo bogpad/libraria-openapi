@@ -1,0 +1,32 @@
+_id: req_wrk_34e958ab58724228942ae89865441a2ea1333255
+type: Request
+parentId: fld_wrk_34e958ab58724228942ae89865441a2e00299a40
+modified: 1680324608098
+created: 1680324597998
+url: "{{ base_url }}/library/{{ library_id }}/query"
+name: Query the library
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+      "query": "What is the capital of France?"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+authentication:
+  type: apikey
+  key: x-api-key
+  value: "{{ xApiKey }}"
+  addTo: header
+metaSortKey: -1680324597998
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

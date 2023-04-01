@@ -1,0 +1,35 @@
+_id: req_wrk_34e958ab58724228942ae89865441a2e6f714d1d
+type: Request
+parentId: fld_wrk_34e958ab58724228942ae89865441a2e00299a40
+modified: 1680324597999
+created: 1680324597999
+url: "{{ base_url }}/library/{{ library_id }}/document"
+name: Add a new document to the library
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+      "urls": [
+        "https://example.com/article1",
+        "https://example.com/article2"
+      ]
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+authentication:
+  type: apikey
+  key: x-api-key
+  value: "{{ xApiKey }}"
+  addTo: header
+metaSortKey: -1680324597999
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

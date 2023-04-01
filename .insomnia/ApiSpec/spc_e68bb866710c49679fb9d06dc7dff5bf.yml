@@ -1,0 +1,122 @@
+_id: spc_e68bb866710c49679fb9d06dc7dff5bf
+type: ApiSpec
+parentId: wrk_34e958ab58724228942ae89865441a2e
+modified: 1680324598003
+created: 1680324474945
+fileName: libraria.yaml
+contents: |
+  openapi: 3.0.0
+  info:
+    title: Libraria API
+    version: 1.0.0
+    description: Libraria API
+    contact:
+      name: Libraria
+      email: team@bogpad.io
+
+  servers:
+    - url: https://api.libraria.dev
+
+  tags:
+    - name: library
+      description: Operations related to library management
+
+  components:
+    securitySchemes:
+      ApiKeyAuth:
+        type: apiKey
+        in: header
+        name: x-api-key
+
+  paths:
+    /library/{library_id}/document:
+      post:
+        tags:
+          - library
+        operationId: addDocument
+        security:
+          - ApiKeyAuth: []
+        summary: Add a new document to the library
+        description: Scrapes and adds a set of up to 20 URLs to the library.
+        parameters:
+          - name: library_id
+            in: path
+            description: The ID of the library.
+            required: true
+            schema:
+              type: string
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  urls:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                      - "https://example.com/article1"
+                      - "https://example.com/article2"
+        responses:
+          '200':
+            description: URLs added to the library
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      example: "success"
+                    message:
+                      type: string
+                      example: "URLs added to the library"
+
+    /library/{library_id}/query:
+      post:
+        tags:
+          - library
+        operationId: queryLibrary
+        security:
+          - ApiKeyAuth: []
+        summary: Query the library
+        description: Makes a query request and returns a reply.
+        parameters:
+          - name: library_id
+            in: path
+            description: The ID of the library.
+            required: true
+            schema:
+              type: string
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  query:
+                    type: string
+                    example: "What is the capital of France?"
+                  conversation_id:
+                    type: string
+                    nullable: true
+                    example: "optional-unique-id"
+        responses:
+          '200':
+            description: Query response
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    reply:
+                      type: string
+                      example: "The capital of France is Paris."
+                    conversation_id:
+                      type: string
+                      nullable: true
+                      example: "optional-unique-id"
+contentType: yaml
